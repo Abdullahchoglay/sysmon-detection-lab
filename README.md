@@ -37,14 +37,18 @@ flowchart LR
 | Sysmon package | Version 15.22; Microsoft signatures verified locally |
 | Sysmon configuration | Sysmon Modular balanced 15.21 profile; release checksum verified |
 
-## Verified local results
+## Verified results
 
 - Event ID 1 captured marked `cmd.exe` and PowerShell execution with command lines, hashes, process GUIDs, parent fields, company metadata, and integrity level.
 - Event ID 3 captured both sides of a loopback-only TCP connection and associated them with the responsible PowerShell process GUID.
 - Event ID 11 captured a marked text file in `C:\SysmonLab\` after a narrow lab-specific include was applied.
 - The Sysmon and Wazuh services remained running and automatic after deployment, and the agent retained its established port 1514 connection.
+- Wazuh built-in Rule 92057 generated a live level 12 alert for the marked PowerShell activity and mapped it to T1059.001.
+- Custom Rule 100200 generated a live level 5 alert for marked process creation.
+- Custom Rule 100203 generated a live level 8 alert for the harmless encoded-command indicator and mapped it to T1027.
+- Custom Rule 100202 matched a synthetic Event ID 11 sample in `wazuh-logtest` at level 6.
 
-Wazuh ingestion and custom-rule alert results are not claimed yet because manager access has not been completed.
+Live Wazuh alerts were not observed for Event IDs 3 or 11. Their local events are verified, and the Event ID 11 rule is independently validated, but end-to-end ingestion is not claimed.
 
 ## Repository layout
 

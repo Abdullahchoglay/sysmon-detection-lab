@@ -15,7 +15,8 @@
   </rule>
 
   <rule id="100202" level="6">
-    <if_group>sysmon_event11</if_group>
+    <field name="win.system.providerName">^Microsoft-Windows-Sysmon$</field>
+    <field name="win.system.eventID">^11$</field>
     <field name="win.eventdata.targetFilename" type="pcre2">(?i)\\SysmonLab\\SYSMON-LAB-[A-Z0-9-]+\.txt$</field>
     <description>Sysmon lab: marked file created in the monitored test directory</description>
     <group>sysmon_event11,file_creation,lab_test,</group>
@@ -23,9 +24,19 @@
 
   <rule id="100203" level="8">
     <if_sid>100200</if_sid>
-    <field name="win.eventdata.commandLine" type="pcre2">(?i)(-enc|-encodedcommand).+SYSMON-LAB-</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(SYSMON-LAB-.+(-enc|-encodedcommand)|(-enc|-encodedcommand).+SYSMON-LAB-)</field>
     <description>Sysmon lab: suspicious-looking but harmless encoded-command marker</description>
     <mitre><id>T1027</id></mitre>
     <group>obfuscated_files,lab_test,</group>
+  </rule>
+
+  <rule id="100204" level="4">
+    <field name="win.system.providerName">^Microsoft-Windows-Sysmon$</field>
+    <field name="win.system.eventID">^3$</field>
+    <field name="win.eventdata.destinationIp">^127\.0\.0\.1$</field>
+    <field name="win.eventdata.destinationPort">^49191$</field>
+    <description>Sysmon lab: controlled loopback network connection</description>
+    <mitre><id>T1071</id></mitre>
+    <group>sysmon_event3,network_connection,lab_test,</group>
   </rule>
 </group>

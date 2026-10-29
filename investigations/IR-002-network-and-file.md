@@ -17,4 +17,4 @@ Benign true positive. The activity proves process-to-network and process-to-file
 
 ## Evidence boundary
 
-Local Sysmon collection is verified. Wazuh rule ID, severity, and indexing remain pending.
+Local Sysmon collection is verified. File Rule 100202 is verified with `wazuh-logtest` at level 6. Repeated live tests did not produce Event ID 3 or 11 alerts, so end-to-end ingestion for these event types is not claimed.

@@ -20,6 +20,10 @@ No standalone service or event channel was created. Microsoft documentation publ
 
 The first test produced process and network events but no Event ID 11 for `C:\SysmonLab\`. The balanced profile is intentionally selective. A narrow include for that directory was added, the XML was validated, and Sysmon accepted the dynamic update. The repeated test produced Event ID 11 record 518.
 
-## Manager access unavailable
+## Manager SSH initially unavailable
 
-The VM exposes SSH through localhost port 2222, but the forwarded connection did not return an SSH banner and no local SSH key exists. Manager-side rule installation, `wazuh-logtest`, service inspection, and indexed-event verification are therefore not claimed yet.
+The VM exposed localhost port 2222, but OpenSSH Server was not installed. After installing and enabling `openssh-server`, a temporary project-specific key enabled audited manager access. Temporary access was removed after validation.
+
+## Event IDs 3 and 11 did not alert live
+
+Controlled network and file events appeared in the local Sysmon channel. Rule 100202 also produced the expected level 6 result in `wazuh-logtest`. Repeated tests, including a Wazuh agent restart, did not yield live Event ID 3 or 11 alerts. The project records these as local-only and rule-test evidence rather than claiming end-to-end success.

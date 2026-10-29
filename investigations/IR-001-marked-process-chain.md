@@ -15,6 +15,6 @@ At 17:54 local time on 2026-10-29, controlled lab activity launched `cmd.exe` an
 
 Benign true positive. The telemetry is useful for identifying command-shell and PowerShell execution, but the marker and known test context explain the activity.
 
-## Evidence boundary
+## Wazuh result
 
-Local Sysmon collection is verified. Wazuh ingestion and custom-rule alerting are pending manager access.
+The repeated test generated live custom alerts: Rule 100200 at level 5 for the marked command shell and Rule 100203 at level 8 for the harmless encoded-command indicator. A prior run also triggered built-in Rule 92057 at level 12. This scenario is verified end to end.

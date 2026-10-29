@@ -19,4 +19,4 @@
 
 ## Current limitation
 
-Local telemetry is verified. Manager-side Wazuh ingestion, indexed rule IDs, severities, and custom-rule validation are pending authenticated VM access. Those outcomes are not implied by the healthy agent connection.
+Process and PowerShell scenarios are verified end to end. Network and file events are verified locally, and the file rule is verified independently with `wazuh-logtest`; live Wazuh alerts for Event IDs 3 and 11 were not observed and are not claimed.
