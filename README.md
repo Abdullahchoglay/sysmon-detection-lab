@@ -1,6 +1,6 @@
 # Sysmon Threat Detection and Incident Response Lab
 
-> Status: Build in progress. Results are not claimed until linked evidence is marked verified.
+> Status: Complete. Verified results are linked to sanitized evidence; unverified outcomes are identified explicitly.
 
 ## Overview
 
@@ -68,5 +68,5 @@ All activity is restricted to systems owned by the project author. Tests create 
 ## Limitations
 
 - The host began with limited free disk space; event volume and index growth must be monitored.
-- The balanced configuration targets Sysmon 15.21 and is being used as a compatible pinned starting point for Sysmon 15.22. Runtime configuration acceptance must be verified before this becomes a completed result.
-- Screenshots, live rule IDs, severity levels, and indexed events will be documented only after direct verification.
+- The balanced configuration targets Sysmon 15.21 and was accepted by the installed Windows Sysmon implementation; future Sysmon changes may require retesting.
+- No screenshots are published in this release. Evidence is text-first and sanitized to minimize exposure of host details.
