@@ -1,0 +1,27 @@
+# Working evidence and sensitive exports
+*.evtx
+*.log
+*.zip
+*.7z
+*.pcap
+*.pcapng
+raw-evidence/
+working/
+backups/
+
+# Credentials and local configuration
+.env
+.env.*
+*.key
+*.pem
+*credentials*
+*password*
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Reviewed screenshots are added explicitly
+screenshots/*
+!screenshots/README.md

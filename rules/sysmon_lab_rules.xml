@@ -1,0 +1,31 @@
+<group name="windows,sysmon,sysmon_detection_lab,">
+  <rule id="100200" level="5">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)SYSMON-LAB-[A-Z0-9-]+</field>
+    <description>Sysmon lab: marked process execution</description>
+    <group>sysmon_event1,lab_test,</group>
+  </rule>
+
+  <rule id="100201" level="7">
+    <if_sid>100200</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\powershell\.exe$</field>
+    <description>Sysmon lab: marked PowerShell execution</description>
+    <mitre><id>T1059.001</id></mitre>
+    <group>powershell_execution,lab_test,</group>
+  </rule>
+
+  <rule id="100202" level="6">
+    <if_group>sysmon_event11</if_group>
+    <field name="win.eventdata.targetFilename" type="pcre2">(?i)\\SysmonLab\\SYSMON-LAB-[A-Z0-9-]+\.txt$</field>
+    <description>Sysmon lab: marked file created in the monitored test directory</description>
+    <group>sysmon_event11,file_creation,lab_test,</group>
+  </rule>
+
+  <rule id="100203" level="8">
+    <if_sid>100200</if_sid>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(-enc|-encodedcommand).+SYSMON-LAB-</field>
+    <description>Sysmon lab: suspicious-looking but harmless encoded-command marker</description>
+    <mitre><id>T1027</id></mitre>
+    <group>obfuscated_files,lab_test,</group>
+  </rule>
+</group>
